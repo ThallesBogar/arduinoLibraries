@@ -127,15 +127,17 @@ void drawStart(){
 }
 
 // Procedure responsável por desenhar as barras de RPM
-void drawRPM(int _bars){
-    u8g.setFont(u8g_font_helvR08);
-	u8g.setColorIndex(1);
-	u8g.setPrintPos(0,63);
-	u8g.print("RPM");
-
+void drawRPM(int _rpm){
     u8g.firstPage();
  	do{
-        if(_bars > 0){
+ 		u8g.setFont(u8g_font_helvR08);
+		u8g.setColorIndex(1);
+ 		u8g.setPrintPos(0,63);
+		u8g.print("RPM");
+		u8g.setPrintPos(27,63);
+		u8g.print(_rpm);
+
+        if(_rpm > 1600){
             // Desenha a primeira barra de RPM
             u8g.drawLine(0, 49, 1, 49);
         	u8g.drawLine(0, 48, 2, 48);
@@ -152,7 +154,7 @@ void drawRPM(int _bars){
         	u8g.drawLine(0, 37, 7, 37);
         	u8g.drawLine(0, 36, 8, 36);
         	u8g.drawLine(0, 35, 8, 35);
-            if(_bars > 1){
+            if(_rpm > 2300){
                 // Desenha a segunda barra de RPM
                 u8g.drawLine(0, 32, 9, 32);
             	u8g.drawLine(0, 31, 9, 31);
@@ -165,7 +167,7 @@ void drawRPM(int _bars){
             	u8g.drawLine(0, 24, 13, 24);
             	u8g.drawLine(0, 23, 13, 23);
             	u8g.drawLine(0, 22, 14, 22);
-                if(_bars > 2){
+                if(_rpm > 3300){
                     // Desenha a terceira barra de RPM
                     u8g.drawLine(0, 19, 15, 19);
                 	u8g.drawLine(0, 18, 15, 18);
@@ -177,7 +179,7 @@ void drawRPM(int _bars){
                 	u8g.drawLine(0, 12, 18, 12);
                 	u8g.drawLine(0, 11, 19, 11);
                 	u8g.drawLine(0, 10, 20, 10);
-                    if(_bars > 3){
+                    if(_rpm > 4100){
                         // Desenha a quarta barra de RPM
                         u8g.drawLine(0, 7, 21, 7);
                     	u8g.drawLine(0, 6, 21, 6);
@@ -259,10 +261,10 @@ void drawTemperatura(int _CVT, int _motor){
     	u8g.setPrintPos(57,52);
     	u8g.print(_CVT);
     	u8g.print("C");
-    	u8g.setPrintPos(28,60);
+    	/*u8g.setPrintPos(28,60);
     	u8g.print("Motor:");
     	u8g.setPrintPos(63,60);
     	u8g.print(_motor);
-    	u8g.print("C");
+    	u8g.print("C");*/
     }while(u8g.nextPage());
 }
