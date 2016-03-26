@@ -109,6 +109,7 @@ const uint8_t logoBaja[] U8G_PROGMEM = {
 
 U8GLIB_ST7920_128X64_1X u8g(6, 5, 8 ,7);     //Declaracao dos pinos do display.
 
+// Procedure responsável por desenhar as telas de inicialização
 void drawStart(){
     // Desenha o logo da UFU no display
     u8g.firstPage();
@@ -125,72 +126,72 @@ void drawStart(){
 	delay(4000);
 }
 
-void nenhumaBarra(){
-	u8g.setFont(u8g_font_helvR08);
+// Procedure responsável por desenhar as barras de RPM
+void drawRPM(int _bars){
+    u8g.setFont(u8g_font_helvR08);
 	u8g.setColorIndex(1);
 	u8g.setPrintPos(0,63);
 	u8g.print("RPM");
 
-	/*u8g.setFont(u8g_font_helvR08);
-	u8g.setColorIndex(1);
-	u8g.setPrintPos(27,63);
-	u8g.print(rpm);*/
-}
-
-void primeiraBarra(){
-	u8g.drawLine(0, 49, 1, 49);
-	u8g.drawLine(0, 48, 2, 48);
-	u8g.drawLine(0, 47, 2, 47);
-	u8g.drawLine(0, 46, 3, 46);
-	u8g.drawLine(0, 45, 3, 45);
-	u8g.drawLine(0, 44, 4, 44);
-	u8g.drawLine(0, 43, 4, 43);
-	u8g.drawLine(0, 42, 5, 42);
-	u8g.drawLine(0, 41, 5, 41);
-	u8g.drawLine(0, 40, 6, 40);
-	u8g.drawLine(0, 39, 6, 39);
-	u8g.drawLine(0, 38, 7, 38);
-	u8g.drawLine(0, 37, 7, 37);
-	u8g.drawLine(0, 36, 8, 36);
-	u8g.drawLine(0, 35, 8, 35);
-}
-
-void segundaBarra(){
-	u8g.drawLine(0, 32, 9, 32);
-	u8g.drawLine(0, 31, 9, 31);
-	u8g.drawLine(0, 30, 10, 30);
-	u8g.drawLine(0, 29, 10, 29);
-	u8g.drawLine(0, 28, 11, 28);
-	u8g.drawLine(0, 27, 11, 27);
-	u8g.drawLine(0, 26, 12, 26);
-	u8g.drawLine(0, 25, 12, 25);
-	u8g.drawLine(0, 24, 13, 24);
-	u8g.drawLine(0, 23, 13, 23);
-	u8g.drawLine(0, 22, 14, 22);
-}
-
-void terceiraBarra(){
-	u8g.drawLine(0, 19, 15, 19);
-	u8g.drawLine(0, 18, 15, 18);
-	u8g.drawLine(0, 17, 16, 17);
-	u8g.drawLine(0, 16, 16, 16);
-	u8g.drawLine(0, 15, 17, 15);
-	u8g.drawLine(0, 14, 17, 14);
-	u8g.drawLine(0, 13, 18, 13);
-	u8g.drawLine(0, 12, 18, 12);
-	u8g.drawLine(0, 11, 19, 11);
-	u8g.drawLine(0, 10, 20, 10);
-}
-
-void quartaBarra(){
-	u8g.drawLine(0, 7, 21, 7);
-	u8g.drawLine(0, 6, 21, 6);
-	u8g.drawLine(0, 5, 22, 5);
-	u8g.drawLine(0, 4, 22, 4);
-	u8g.drawLine(0, 3, 23, 3);
-	u8g.drawLine(0, 2, 23, 2);
-	u8g.drawLine(0, 1, 24, 1);
-	u8g.drawLine(0, 0, 25, 0);
+    u8g.firstPage();
+ 	do{
+        if(_bars > 0){
+            // Desenha a primeira barra de RPM
+            u8g.drawLine(0, 49, 1, 49);
+        	u8g.drawLine(0, 48, 2, 48);
+        	u8g.drawLine(0, 47, 2, 47);
+        	u8g.drawLine(0, 46, 3, 46);
+        	u8g.drawLine(0, 45, 3, 45);
+        	u8g.drawLine(0, 44, 4, 44);
+        	u8g.drawLine(0, 43, 4, 43);
+        	u8g.drawLine(0, 42, 5, 42);
+        	u8g.drawLine(0, 41, 5, 41);
+        	u8g.drawLine(0, 40, 6, 40);
+        	u8g.drawLine(0, 39, 6, 39);
+        	u8g.drawLine(0, 38, 7, 38);
+        	u8g.drawLine(0, 37, 7, 37);
+        	u8g.drawLine(0, 36, 8, 36);
+        	u8g.drawLine(0, 35, 8, 35);
+            if(_bars > 1){
+                // Desenha a segunda barra de RPM
+                u8g.drawLine(0, 32, 9, 32);
+            	u8g.drawLine(0, 31, 9, 31);
+            	u8g.drawLine(0, 30, 10, 30);
+            	u8g.drawLine(0, 29, 10, 29);
+            	u8g.drawLine(0, 28, 11, 28);
+            	u8g.drawLine(0, 27, 11, 27);
+            	u8g.drawLine(0, 26, 12, 26);
+            	u8g.drawLine(0, 25, 12, 25);
+            	u8g.drawLine(0, 24, 13, 24);
+            	u8g.drawLine(0, 23, 13, 23);
+            	u8g.drawLine(0, 22, 14, 22);
+                if(_bars > 2){
+                    // Desenha a terceira barra de RPM
+                    u8g.drawLine(0, 19, 15, 19);
+                	u8g.drawLine(0, 18, 15, 18);
+                	u8g.drawLine(0, 17, 16, 17);
+                	u8g.drawLine(0, 16, 16, 16);
+                	u8g.drawLine(0, 15, 17, 15);
+                	u8g.drawLine(0, 14, 17, 14);
+                	u8g.drawLine(0, 13, 18, 13);
+                	u8g.drawLine(0, 12, 18, 12);
+                	u8g.drawLine(0, 11, 19, 11);
+                	u8g.drawLine(0, 10, 20, 10);
+                    if(_bars > 3){
+                        // Desenha a quarta barra de RPM
+                        u8g.drawLine(0, 7, 21, 7);
+                    	u8g.drawLine(0, 6, 21, 6);
+                    	u8g.drawLine(0, 5, 22, 5);
+                    	u8g.drawLine(0, 4, 22, 4);
+                    	u8g.drawLine(0, 3, 23, 3);
+                    	u8g.drawLine(0, 2, 23, 2);
+                    	u8g.drawLine(0, 1, 24, 1);
+                    	u8g.drawLine(0, 0, 25, 0);
+                    }
+                }
+            }
+        }
+    }while(u8g.nextPage());
 }
 
 void constantes(int tensao, int _velocidade, int distancia_percorrida, int temperatura1, int temperatura2){
