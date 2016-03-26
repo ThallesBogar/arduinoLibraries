@@ -34,7 +34,7 @@ const uint8_t logoUFU[] U8G_PROGMEM = {
     0x00, 0x00, 0x3F, 0x7F, 0xFF, 0xFE, 0x00, 0x00, 0x00, 0x00, 0x1E, 0xFF, 0xFF, 0xFC, 0x00, 0x00
 };
 ////////////////////////////////////////BitMap Bateria/////////////////////////////////////////////
-const uint8_t bat_bitmap[] U8G_PROGMEM = {
+const uint8_t bateria[] U8G_PROGMEM = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x07, 0x80, 0x00, 0xFF,
     0xFF, 0xFF, 0xF8, 0x00, 0xFF, 0xFF, 0xFF, 0xF8, 0x00, 0xC0, 0x00, 0x00, 0x18, 0x00, 0xC0, 0x00,
     0x03, 0x18, 0x00, 0xCF, 0x00, 0x07, 0x98, 0x00, 0xCF, 0x00, 0x07, 0x98, 0x00, 0xC0, 0x00, 0x03,
@@ -194,106 +194,66 @@ void drawRPM(int _bars){
     }while(u8g.nextPage());
 }
 
-void constantes(int tensao, int _velocidade, int distancia_percorrida, int temperatura1, int temperatura2){
-	//Linhas responsaveis pela impressao da bateria e da tensao:
-	u8g.setFont(u8g_font_6x12);
-	u8g.setColorIndex(1);
-	u8g.drawBitmapP( 95, 39, 5, 42, bat_bitmap);
-	u8g.setPrintPos(100,56);
-	if (tensao < 10)
-		u8g.print("0");
-	u8g.print(tensao);
-	u8g.setPrintPos(113,56);
-	u8g.print("v");
-	//Linhas responsaveis pela impressao da velocidade:
-	u8g.setFont(u8g_font_fur35n);
-	u8g.setColorIndex(1);
-	u8g.setPrintPos(25,36);
-	if (_velocidade < 10)
-		u8g.print("0");
-	u8g.print(_velocidade);
-	u8g.setFont(u8g_font_6x13);
-	u8g.setColorIndex(1);
-	u8g.setPrintPos(78,35);
-	u8g.print("KM/h");
-	//Linhas responsaveis pela impressao da distancia percorrida:
-	u8g.setFont(u8g_font_6x12);
-	u8g.setColorIndex(1);
-	u8g.setPrintPos(28,44);
-	u8g.print("Dist:");
-	u8g.setPrintPos(57,44);
-	u8g.print(distancia_percorrida);
-	u8g.print("Km");
-	//Linhas responsaveis pela impressao da temperatura da CVT:
-	u8g.setFont(u8g_font_6x12);
-	u8g.setColorIndex(1);
-	u8g.setPrintPos(28,52);
-	u8g.print("CVT:");
-	u8g.setPrintPos(57,52);
-	u8g.print(temperatura1);
-	u8g.print("C");
-	//Linhas responsaveis pela impressao da temperatura do motor:
-	u8g.setFont(u8g_font_6x12);
-	u8g.setColorIndex(1);
-	u8g.setPrintPos(28,60);
-	u8g.print("Motor:");
-	u8g.setPrintPos(63,60);
-	u8g.print(temperatura2);
-	u8g.print("C");
+// Procedure responsável por desenhar a tensão
+void drawTensao(int _tensao){
+    u8g.firstPage();
+    do{
+        u8g.setFont(u8g_font_6x12);
+    	u8g.setColorIndex(1);
+    	u8g.drawBitmapP( 95, 39, 5, 42, bateria);
+    	u8g.setPrintPos(100,56);
+    	if (_tensao < 0)
+    		u8g.print("0");
+    	u8g.print(_tensao);
+    	u8g.setPrintPos(113,56);
+    	u8g.print("v");
+    }while(u8g.nextPage());
 }
 
-void telaPrincipal(int tensao, int _velocidade, int distancia_percorrida, int temperatura1, int temperatura2,
- 					int rpm){
-	Serial.print("RPM: ");
-	Serial.println(rpm);
- 	u8g.firstPage();
- 	do{
- 		if(rpm == 0){
- 			Serial.println("Nenhuma Barra!");
- 			nenhumaBarra();
-	 		constantes(tensao, _velocidade, distancia_percorrida, temperatura1, temperatura2);
-		}
+// Procedure responsável por desenhar a velocidade
+void drawVelocidade(int _velocidade){
+    u8g.firstPage();
+    do{
+        u8g.setFont(u8g_font_fur35n);
+    	u8g.setColorIndex(1);
+    	u8g.setPrintPos(25,36);
+    	if (_velocidade < 5)
+    		u8g.print("0");
+    	u8g.print(_velocidade);
+    	u8g.setFont(u8g_font_6x13);
+    	u8g.setColorIndex(1);
+    	u8g.setPrintPos(78,35);
+    	u8g.print("KM/h");
+    }while(u8g.nextPage());
+}
 
-		else{
-			if(rpm >= 1 && rpm <= 1050){
-				Serial.println("Uma Barra!");
-				nenhumaBarra();
-				primeiraBarra();
-				constantes(tensao, _velocidade, distancia_percorrida, temperatura1, temperatura2);
-		}
+// Procedure responsável por desenhar o odómetro
+void drawOdometro(int _distancia){
+    u8g.firstPage();
+    do{
+        u8g.setFont(u8g_font_6x12);
+    	u8g.setColorIndex(1);
+    	u8g.setPrintPos(57,44);
+    	u8g.print(_distancia);
+    	u8g.print("Km");
+    }while(u8g.nextPage());
+}
 
-			else{
-				if(rpm >= 1051 && rpm <= 2101){
-					Serial.println("Duas Barra!");
-					nenhumaBarra();
-					primeiraBarra();
-					segundaBarra();
-					constantes(tensao, _velocidade, distancia_percorrida, temperatura1, temperatura2);
-				}
-
-				else{
-					if(rpm >= 2102 && rpm <= 3152){
-						Serial.println("Tres Barra!");
-						nenhumaBarra();
-						primeiraBarra();
-						segundaBarra();
-						terceiraBarra();
-						constantes(tensao, _velocidade, distancia_percorrida, temperatura1, temperatura2);
-					}
-
-					else{
-						if(rpm >= 3153 && rpm <= 4203){
-							Serial.println("Quatro Barra!");
-							nenhumaBarra();
-							primeiraBarra();
-							segundaBarra();
-							terceiraBarra();
-							quartaBarra();
-							constantes(tensao, _velocidade, distancia_percorrida, temperatura1, temperatura2);
-						}
-					}
-				}
-			}
-		}
- 	}while(u8g.nextPage());
- }
+// Procedure responsável por desenhar as temperaturas
+void drawVelocidade(int _CVT, int _motor){
+    u8g.firstPage();
+    do{
+        u8g.setFont(u8g_font_6x12);
+    	u8g.setColorIndex(1);
+    	u8g.setPrintPos(28,52);
+    	u8g.print("CVT:");
+    	u8g.setPrintPos(57,52);
+    	u8g.print(_CVT);
+    	u8g.print("C");
+    	u8g.setPrintPos(28,60);
+    	u8g.print("Motor:");
+    	u8g.setPrintPos(63,60);
+    	u8g.print(_motor);
+    	u8g.print("C");
+    }while(u8g.nextPage());
+}
