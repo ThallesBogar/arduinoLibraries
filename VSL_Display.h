@@ -202,7 +202,7 @@ void drawTensao(int _tensao){
     	u8g.setColorIndex(1);
     	u8g.drawBitmapP( 95, 39, 5, 42, bateria);
     	u8g.setPrintPos(100,56);
-    	if (_tensao < 0)
+    	if (_tensao < 10)
     		u8g.print("0");
     	u8g.print(_tensao);
     	u8g.setPrintPos(113,56);
@@ -217,7 +217,7 @@ void drawVelocidade(int _velocidade){
         u8g.setFont(u8g_font_fur35n);
     	u8g.setColorIndex(1);
     	u8g.setPrintPos(25,36);
-    	if (_velocidade < 5)
+    	if (_velocidade < 10)
     		u8g.print("0");
     	u8g.print(_velocidade);
     	u8g.setFont(u8g_font_6x13);
@@ -234,6 +234,15 @@ void drawOdometro(int _distancia){
         u8g.setFont(u8g_font_6x12);
     	u8g.setColorIndex(1);
     	u8g.setPrintPos(57,44);
+    	if (_distancia < 1000){
+			u8g.print("0");
+			if (_distancia < 100){
+				u8g.print("0");
+				if (_distancia < 10){
+					u8g.print("0");
+				}
+			}
+    	}
     	u8g.print(_distancia);
     	u8g.print("Km");
     }while(u8g.nextPage());
