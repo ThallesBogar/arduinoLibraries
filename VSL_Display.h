@@ -240,7 +240,7 @@ void drawOdometro(int _distancia){
 }
 
 // Procedure responsável por desenhar as temperaturas
-void drawVelocidade(int _CVT, int _motor){
+void drawTemperatura(int _CVT, int _motor){
     u8g.firstPage();
     do{
         u8g.setFont(u8g_font_6x12);
