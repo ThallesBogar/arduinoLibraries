@@ -128,143 +128,139 @@ void drawStart(){
 
 // Procedure responsável por desenhar as barras de RPM
 void drawRPM(int _rpm){
-    u8g.firstPage();
- 	do{
- 		u8g.setFont(u8g_font_helvR08);
-		u8g.setColorIndex(1);
- 		u8g.setPrintPos(0,63);
-		u8g.print("RPM");
-		u8g.setPrintPos(27,63);
-		u8g.print(_rpm);
+	u8g.setFont(u8g_font_helvR08);
+	u8g.setColorIndex(1);
+	u8g.setPrintPos(0,63);
+	u8g.print("RPM");
+	u8g.setPrintPos(27,63);
+	u8g.print(_rpm);
 
-        if(_rpm > 1600){
-            // Desenha a primeira barra de RPM
-            u8g.drawLine(0, 49, 1, 49);
-        	u8g.drawLine(0, 48, 2, 48);
-        	u8g.drawLine(0, 47, 2, 47);
-        	u8g.drawLine(0, 46, 3, 46);
-        	u8g.drawLine(0, 45, 3, 45);
-        	u8g.drawLine(0, 44, 4, 44);
-        	u8g.drawLine(0, 43, 4, 43);
-        	u8g.drawLine(0, 42, 5, 42);
-        	u8g.drawLine(0, 41, 5, 41);
-        	u8g.drawLine(0, 40, 6, 40);
-        	u8g.drawLine(0, 39, 6, 39);
-        	u8g.drawLine(0, 38, 7, 38);
-        	u8g.drawLine(0, 37, 7, 37);
-        	u8g.drawLine(0, 36, 8, 36);
-        	u8g.drawLine(0, 35, 8, 35);
-            if(_rpm > 2300){
-                // Desenha a segunda barra de RPM
-                u8g.drawLine(0, 32, 9, 32);
-            	u8g.drawLine(0, 31, 9, 31);
-            	u8g.drawLine(0, 30, 10, 30);
-            	u8g.drawLine(0, 29, 10, 29);
-            	u8g.drawLine(0, 28, 11, 28);
-            	u8g.drawLine(0, 27, 11, 27);
-            	u8g.drawLine(0, 26, 12, 26);
-            	u8g.drawLine(0, 25, 12, 25);
-            	u8g.drawLine(0, 24, 13, 24);
-            	u8g.drawLine(0, 23, 13, 23);
-            	u8g.drawLine(0, 22, 14, 22);
-                if(_rpm > 3300){
-                    // Desenha a terceira barra de RPM
-                    u8g.drawLine(0, 19, 15, 19);
-                	u8g.drawLine(0, 18, 15, 18);
-                	u8g.drawLine(0, 17, 16, 17);
-                	u8g.drawLine(0, 16, 16, 16);
-                	u8g.drawLine(0, 15, 17, 15);
-                	u8g.drawLine(0, 14, 17, 14);
-                	u8g.drawLine(0, 13, 18, 13);
-                	u8g.drawLine(0, 12, 18, 12);
-                	u8g.drawLine(0, 11, 19, 11);
-                	u8g.drawLine(0, 10, 20, 10);
-                    if(_rpm > 4100){
-                        // Desenha a quarta barra de RPM
-                        u8g.drawLine(0, 7, 21, 7);
-                    	u8g.drawLine(0, 6, 21, 6);
-                    	u8g.drawLine(0, 5, 22, 5);
-                    	u8g.drawLine(0, 4, 22, 4);
-                    	u8g.drawLine(0, 3, 23, 3);
-                    	u8g.drawLine(0, 2, 23, 2);
-                    	u8g.drawLine(0, 1, 24, 1);
-                    	u8g.drawLine(0, 0, 25, 0);
-                    }
+    if(_rpm > 1600){
+        // Desenha a primeira barra de RPM
+        u8g.drawLine(0, 49, 1, 49);
+    	u8g.drawLine(0, 48, 2, 48);
+    	u8g.drawLine(0, 47, 2, 47);
+    	u8g.drawLine(0, 46, 3, 46);
+    	u8g.drawLine(0, 45, 3, 45);
+    	u8g.drawLine(0, 44, 4, 44);
+    	u8g.drawLine(0, 43, 4, 43);
+    	u8g.drawLine(0, 42, 5, 42);
+    	u8g.drawLine(0, 41, 5, 41);
+    	u8g.drawLine(0, 40, 6, 40);
+    	u8g.drawLine(0, 39, 6, 39);
+    	u8g.drawLine(0, 38, 7, 38);
+    	u8g.drawLine(0, 37, 7, 37);
+    	u8g.drawLine(0, 36, 8, 36);
+    	u8g.drawLine(0, 35, 8, 35);
+        if(_rpm > 2300){
+            // Desenha a segunda barra de RPM
+            u8g.drawLine(0, 32, 9, 32);
+        	u8g.drawLine(0, 31, 9, 31);
+        	u8g.drawLine(0, 30, 10, 30);
+        	u8g.drawLine(0, 29, 10, 29);
+        	u8g.drawLine(0, 28, 11, 28);
+        	u8g.drawLine(0, 27, 11, 27);
+        	u8g.drawLine(0, 26, 12, 26);
+        	u8g.drawLine(0, 25, 12, 25);
+        	u8g.drawLine(0, 24, 13, 24);
+        	u8g.drawLine(0, 23, 13, 23);
+        	u8g.drawLine(0, 22, 14, 22);
+            if(_rpm > 3300){
+                // Desenha a terceira barra de RPM
+                u8g.drawLine(0, 19, 15, 19);
+            	u8g.drawLine(0, 18, 15, 18);
+            	u8g.drawLine(0, 17, 16, 17);
+            	u8g.drawLine(0, 16, 16, 16);
+            	u8g.drawLine(0, 15, 17, 15);
+            	u8g.drawLine(0, 14, 17, 14);
+            	u8g.drawLine(0, 13, 18, 13);
+            	u8g.drawLine(0, 12, 18, 12);
+            	u8g.drawLine(0, 11, 19, 11);
+            	u8g.drawLine(0, 10, 20, 10);
+                if(_rpm > 4100){
+                    // Desenha a quarta barra de RPM
+                    u8g.drawLine(0, 7, 21, 7);
+                	u8g.drawLine(0, 6, 21, 6);
+                	u8g.drawLine(0, 5, 22, 5);
+                	u8g.drawLine(0, 4, 22, 4);
+                	u8g.drawLine(0, 3, 23, 3);
+                	u8g.drawLine(0, 2, 23, 2);
+                	u8g.drawLine(0, 1, 24, 1);
+                	u8g.drawLine(0, 0, 25, 0);
                 }
             }
         }
-    }while(u8g.nextPage());
+    }
 }
 
 // Procedure responsável por desenhar a tensão
 void drawTensao(int _tensao){
-    u8g.firstPage();
-    do{
-        u8g.setFont(u8g_font_6x12);
-    	u8g.setColorIndex(1);
-    	u8g.drawBitmapP( 95, 39, 5, 42, bateria);
-    	u8g.setPrintPos(100,56);
-    	if (_tensao < 10)
-    		u8g.print("0");
-    	u8g.print(_tensao);
-    	u8g.setPrintPos(113,56);
-    	u8g.print("v");
-    }while(u8g.nextPage());
+    u8g.setFont(u8g_font_6x12);
+	u8g.setColorIndex(1);
+	u8g.drawBitmapP( 95, 39, 5, 42, bateria);
+	u8g.setPrintPos(100,56);
+	if (_tensao < 10)
+		u8g.print("0");
+	u8g.print(_tensao);
+	u8g.setPrintPos(113,56);
+	u8g.print("v");
 }
 
 // Procedure responsável por desenhar a velocidade
 void drawVelocidade(int _velocidade){
-    u8g.firstPage();
-    do{
-        u8g.setFont(u8g_font_fur35n);
-    	u8g.setColorIndex(1);
-    	u8g.setPrintPos(25,36);
-    	if (_velocidade < 10)
-    		u8g.print("0");
-    	u8g.print(_velocidade);
-    	u8g.setFont(u8g_font_6x13);
-    	u8g.setColorIndex(1);
-    	u8g.setPrintPos(78,35);
-    	u8g.print("KM/h");
-    }while(u8g.nextPage());
+    u8g.setFont(u8g_font_fur35n);
+	u8g.setColorIndex(1);
+	u8g.setPrintPos(25,36);
+	if (_velocidade < 10)
+		u8g.print("0");
+	u8g.print(_velocidade);
+	u8g.setFont(u8g_font_6x13);
+	u8g.setColorIndex(1);
+	u8g.setPrintPos(78,35);
+	u8g.print("KM/h");
 }
 
 // Procedure responsável por desenhar o odómetro
 void drawOdometro(int _distancia){
-    u8g.firstPage();
-    do{
-        u8g.setFont(u8g_font_6x12);
-    	u8g.setColorIndex(1);
-    	u8g.setPrintPos(57,44);
-    	if (_distancia < 1000){
+    u8g.setFont(u8g_font_6x12);
+	u8g.setColorIndex(1);
+	u8g.setPrintPos(39,44);
+	if (_distancia < 1000){
+		u8g.print("0");
+		if (_distancia < 100){
 			u8g.print("0");
-			if (_distancia < 100){
+			if (_distancia < 10){
 				u8g.print("0");
-				if (_distancia < 10){
-					u8g.print("0");
-				}
 			}
-    	}
-    	u8g.print(_distancia);
-    	u8g.print("Km");
-    }while(u8g.nextPage());
+		}
+	}
+	u8g.print(_distancia);
+	u8g.print("Km");
 }
 
 // Procedure responsável por desenhar as temperaturas
 void drawTemperatura(int _CVT, int _motor){
-    u8g.firstPage();
+    u8g.setFont(u8g_font_6x12);
+	u8g.setColorIndex(1);
+	u8g.setPrintPos(28,52);
+	u8g.print("CVT:");
+	u8g.setPrintPos(57,52);
+	u8g.print(_CVT);
+	u8g.print("C");
+	/*u8g.setPrintPos(28,60);
+	u8g.print("Motor:");
+	u8g.setPrintPos(63,60);
+	u8g.print(_motor);
+	u8g.print("C");*/
+}
+
+void draw(int _rpm, int _velocidade, int _tensao, int _distancia, int _CVT, int _motor){
+	u8g.firstPage();
     do{
-        u8g.setFont(u8g_font_6x12);
-    	u8g.setColorIndex(1);
-    	u8g.setPrintPos(28,52);
-    	u8g.print("CVT:");
-    	u8g.setPrintPos(57,52);
-    	u8g.print(_CVT);
-    	u8g.print("C");
-    	/*u8g.setPrintPos(28,60);
-    	u8g.print("Motor:");
-    	u8g.setPrintPos(63,60);
-    	u8g.print(_motor);
-    	u8g.print("C");*/
-    }while(u8g.nextPage());
+		drawRPM(_rpm);
+		drawVelocidade(_velocidade);
+		drawTensao(_tensao);
+		drawOdometro(_distancia);
+		drawTemperatura(_CVT, _motor);
+	}while(u8g.nextPage());
 }
